@@ -14,6 +14,11 @@
                 </van-swipe-item>
             </van-swipe>
         </div>
+        <div v-for="(cate,index) in category" :key="index">
+                <img v-lazy="cate.image" width="90%">
+                <span>{{cate.mallCategoryName}}</span>
+
+            </div>
  
 
     </div>
@@ -53,6 +58,15 @@
         border-bottom:1px solid #fff !important;
         background-color:#fff;
         color:#fff;
+    }
+    .category{
+         background-color: #fff;
+        margin:0 .3rem .3rem .3rem;
+        border-radius: .3rem;
+        font-size:14px;
+        display:flex;
+        flex-direction:row;
+        flex-wrap:nowrap;
     }
 </style>
 

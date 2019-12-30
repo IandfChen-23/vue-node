@@ -1,12 +1,16 @@
 <template>
   <div>
-    <van-nav-bar title="用户注册" left-text="返回" left-arrow @click-left="goback"></van-nav-bar>
+    <van-nav-bar title="用户登陆" ></van-nav-bar>
     <div class="register-panel">
       <van-field v-model="username" label="用户名" icon="clear" placeholder="请输入用户名" required></van-field>
       <van-field type="password" v-model="password" label="用户名" placeholder="请输入用密码" required></van-field>
     </div>
     <div class="register-button">
-      <van-button type="primary" size="large" @click="register" :loading='loading'>马上注册</van-button>
+      <van-button type="primary" size="large" @click="login" :loading='loading'>登陆</van-button>
+      <div style="padding:20px 0">
+        <van-button  size="large" @click="register" >注册</van-button>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -17,7 +21,7 @@ import Vue from 'vue';
 import { Toast } from 'vant';
 Vue.use(Toast);
 export default {
-  name: "register",
+  name: "login",
   data() {
     return {
       username: "",
@@ -26,10 +30,10 @@ export default {
     };
   },
   methods: {
-    goback() {
-      this.$router.push("/");
+    register(){
+      this.$router.push('/register')
     },
-    register() {
+    login() {
         if(this.username == ''){
           this.$toast("用户名不能为空");
           return false;
@@ -40,25 +44,25 @@ export default {
         }
       this.loading=true;
       const that=this;
-      axios.post("http://localhost:3000/user/register",{
+      axios.post("http://localhost:3000/user/login",{
             userName: this.username,
             password: this.password
           }
         ).then(res => {
           console.log(res);
-          if(res.data.code===200){
+          if(res.data.code===200&&res.data.message==='success'){
               Toast.success(res.data.message)
               setTimeout(function(){
-                that.$router.push('/login')
+                that.$router.push('/')
               },500)
               
           }else{
               this.loading=false;
-              Toast.fail('注册失败')
+              Toast.fail(res.data.message)
           }
         }).catch(err => {
           this.loading=false;
-          Toast.fail('注册失败')
+          Toast.fail(res.data.message)
         });
     }
   }

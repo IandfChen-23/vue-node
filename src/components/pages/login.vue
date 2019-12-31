@@ -29,6 +29,12 @@ export default {
       loading:false,
     };
   },
+  created() {
+    // if(sessionStorage.userInfo){
+    //   Toast.success('你已经登录')
+    //   this.$router.push('/home')
+    // }
+  },
   methods: {
     register(){
       this.$router.push('/register')
@@ -51,9 +57,10 @@ export default {
         ).then(res => {
           console.log(res);
           if(res.data.code===200&&res.data.message==='success'){
+              sessionStorage.userInfo={userName:this.username}
               Toast.success(res.data.message)
               setTimeout(function(){
-                that.$router.push('/')
+                that.$router.push('/home')
               },500)
               
           }else{

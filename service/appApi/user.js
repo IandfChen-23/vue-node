@@ -1,5 +1,6 @@
 const Router=require('koa-router')
 const mongoose=require('mongoose')
+const addToken = require('../token')
 let router=new Router()
 router.get('/',async(ctx)=>{
     ctx.body='首页'
@@ -17,9 +18,11 @@ router.post('/login',async(ctx)=>{
             let newUser=new User()
             await newUser.comparePassword(password,res.password).then(isMatch=>{
                 if(isMatch){
+                    const token = addToken.addToken({user: userName})  //主要是这里 生成token
                     ctx.body={
                         code:200,
                         message:'success',
+                        token
                     }
                 }
                 else{

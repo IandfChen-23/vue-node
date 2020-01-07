@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../axios/index";
 import Vue from 'vue';
 import { Toast } from 'vant';
 Vue.use(Toast);
@@ -50,7 +50,7 @@ export default {
         }
       this.loading=true;
       const that=this;
-      axios.post("http://localhost:3000/user/login",{
+      axios.post("/user/login",{
             userName: this.username,
             password: this.password
           }

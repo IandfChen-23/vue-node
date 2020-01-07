@@ -51,4 +51,19 @@ router.post('/getDetail',async (ctx)=>{
         }
     })
 })
+router.get('/all',async (ctx)=>{
+    
+    const Goods=mongoose.model('Goods');
+    await Goods.find(function(err,res){
+        if(err){
+           console.log('查询失败')
+        } else {
+            ctx.body={
+                code:200,
+                message:'success',
+                res
+            }
+        }
+    })
+})
 module.exports=router

@@ -1,30 +1,50 @@
 <template>
-    <div>
-      <div class="navbar">
-          <van-nav-bar title="类别列表"></van-nav-bar>
-      </div>
-      <div >
-        <van-row>
-            <van-col span='6'>
-                <div id='leftNav'>
-                  左侧导航
-                </div>
-                
-            </van-col>
-            <van-col span='18'>
-                右侧列表
-            </van-col>
-        </van-row>
-      </div>
+    <div  >
+      <ul class="category" >
+        <li v-for="item in categoryList" :key="item.id" >
+          <img :src="item.IMAGE" alt="">
+          <div class="title">{{item.MALL_CATEGORY_NAME}}</div></li>
+      </ul>
+      
     </div>
 </template>
 
 <script>
+    import axios from "../../axios/index";
     export default {
-        
+      data() {
+        return {
+          categoryList:[]
+        }
+      },
+        methods: {
+        async getData(){
+           await axios.get('/category/all').then(res=>{
+              this.categoryList=res.data.res;
+            })
+         } 
+        },
+        created() {
+          this.getData()
+        },
     }
 </script>
 
 <style  scoped>
-
+ .category{
+   display: flex;
+   justify-content: space-between;
+   
+ }
+ .category li{
+   padding: 5px;
+   text-align: center;
+ }
+ img{
+    width:3rem;
+     height:80px;
+   }
+   .title{
+     font-size: 12px;
+   }
 </style>

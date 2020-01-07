@@ -25,4 +25,18 @@ router.get('/insertAllCategory',async (ctx)=>{
     })
     ctx.body='开始导入数据'
 })
+router.get('/all',async (ctx)=>{
+    const Category=mongoose.model('Category');
+    await Category.find(function(err,res){
+        if(err){
+           console.log('查询失败')
+        } else {
+            ctx.body={
+                code:200,
+                message:'success',
+                res
+            }
+        }
+    })
+})
 module.exports=router

@@ -12,6 +12,7 @@
 <script>
     import axios from "../../axios/index";
     export default {
+      name:'categorylist',
       data() {
         return {
           categoryList:[]

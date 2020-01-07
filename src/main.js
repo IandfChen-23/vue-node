@@ -7,11 +7,12 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 Vue.use(Vant)
 Vue.config.productionTip = false
-
+import store from './store/index'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

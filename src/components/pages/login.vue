@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import axios from "../../axios/index";
 import Vue from 'vue';
 import { Toast } from 'vant';
@@ -36,6 +37,7 @@ export default {
     // }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     register(){
       this.$router.push('/register')
     },
@@ -57,8 +59,12 @@ export default {
         ).then(res => {
           console.log(res);
           if(res.data.code===200&&res.data.message==='success'){
-              sessionStorage.userInfo={userName:this.username}
               Toast.success(res.data.message)
+              console.log(res.data.token);
+              
+              that.userToken = res.data.token;
+          // 将用户token保存到vuex中
+          that.changeLogin({ Authorization: that.userToken });
               setTimeout(function(){
                 that.$router.push('/home')
               },500)
@@ -67,9 +73,10 @@ export default {
               this.loading=false;
               Toast.fail(res.data.message)
           }
-        }).catch(err => {
+        }).catch(res => {
           this.loading=false;
-          Toast.fail(res.data.message)
+          console.log(res);
+          
         });
     }
   }

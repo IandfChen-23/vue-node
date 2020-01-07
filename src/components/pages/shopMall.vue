@@ -25,7 +25,7 @@
       <span>{{cate.mallCategoryName}}</span>
     </div>
     <category-list></category-list>
-    <goods></goods>
+    <Goods></Goods>
   </div>
 </template>
 
@@ -33,6 +33,7 @@
 import CategoryList from "./CategoryList";
 import Goods from "./Goods";
 export default {
+  name:'shopmall',
   data() {
     return {
       swiperPic: [

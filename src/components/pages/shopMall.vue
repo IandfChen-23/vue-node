@@ -26,12 +26,14 @@
     </div>
     <category-list></category-list>
     <Goods></Goods>
+    <Nav-bar></Nav-bar>
   </div>
 </template>
 
 <script>
 import CategoryList from "./CategoryList";
 import Goods from "./Goods";
+import NavBar from '../public/navbar';
 export default {
   name:'shopmall',
   data() {
@@ -47,7 +49,8 @@ export default {
   },
   components:{
         CategoryList,
-        Goods
+        Goods,
+        NavBar
         }
 };
 </script>

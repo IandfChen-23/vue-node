@@ -5,6 +5,10 @@ import Register from '@/components/pages/register'
 import Login from '@/components/pages/login'
 import Goods from '@/components/pages/goods'
 import CategoryList from '@/components/pages/CategoryList'
+import GoodsDetails from '@/components/pages/GoodsDetail'
+import Sort from '@/components/pages/Sort'
+import Cart from '@/components/pages/Cart'
+import My from '@/components/pages/My'
 Vue.use(Router)
 
 const router= new Router({
@@ -27,12 +31,33 @@ const router= new Router({
     {
       path: '/goods',
       name: 'goods',
-      component: Goods
+      component: Goods,
+
+    },
+    {
+      path: '/goods/detail',
+      name: 'GoodsDetails',
+      component: GoodsDetails,
     },
     {
       path: '/categorylist',
       name: 'CategoryList',
       component: CategoryList
+    },
+    {
+      path: '/sort',
+      name: 'sort',
+      component: Sort
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
+    },
+    {
+      path: '/my',
+      name: 'My',
+      component: My
     }
   ]
 })

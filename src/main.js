@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
 Vue.use(Vant)
 Vue.config.productionTip = false
 import store from './store/index'
